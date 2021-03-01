@@ -3,6 +3,8 @@ const router = express.Router();
 const User = require('../../models/User');
 const bcrypt = require("bcryptjs");
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
+const keys = require('../../config/keys');
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
@@ -28,7 +30,7 @@ router.post('/register', (req, res) => {
         } else {
             const newUser = new User({
                 username: req.body.username,
-                password: req.body.email,
+                password: req.body.password,
                 type: req.body.type
             })
 
@@ -56,20 +58,20 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res) => {
     const { errors, isValid } = validateLoginInput(req.body);
-
+     
     if (!isValid) {
         return res.status(400).json(errors);
     }
-    
+
     const username = req.body.username;
     const password = req.body.password;
     
-    User.find({ username })
+    User.findOne({ username })
         .then(user => {
             if (!user) {
                 return res.status(404).json({ username: "This user does not exist."});
             }
-
+            
             bcrypt.compare(password, user.password)
                 .then(isMatch => {
                     if (isMatch) {
@@ -85,7 +87,8 @@ router.post('/login', (req, res) => {
                         errors.password = "Incorrect password";
                         return res.status(400).json(errors);
                     }
-                });
+                })
+                .catch(err => console.log(err));
         });
 });
 

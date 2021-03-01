@@ -15,12 +15,13 @@ mongoose
 app.use(bodyParser.urlencoded({ 
     extended: false
 }));
+app.use(bodyParser.json());
 
-app.use(passport.initialize());
-require('./config/passport')(passport);
 
 app.use("/api/users", users);
 app.use("/api/quizzes", quizzes);
+app.use(passport.initialize());
+require('./config/passport')(passport);
 
 const port = process.env.PORT || 5000;
 
