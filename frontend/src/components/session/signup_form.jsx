@@ -1,96 +1,79 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { signup } from '../../actions/session_actions';
 
-class SignupForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      type: '',
-      password: '',
-      password2: '',
-      errors: {}
-    };
+function SignupForm() {
+  const errors = useSelector(state => state.errors.session);
+  const dispatch = useDispatch();
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.clearedErrors = false;
+
+  const [formData, setFormData] = useState({
+    username: '',
+    type: '',
+    password: '',
+    password2: '',
+  });
+  
+  const {username, type, password, password2} = formData;
+
+
+  function update(field) {
+    return e => setFormData({...formData, [field]: e.target.value})
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.signedIn === true) {
-      this.props.history.push('/login');
-    }
-
-    this.setState({errors: nextProps.errors})
-  }
-
-  update(field) {
-    return e => this.setState({
-      [field]: e.currentTarget.value
-    });
-  }
-
-  handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    let user = {
-      username: this.state.username,
-      type: this.state.type,
-      password: this.state.password,
-      password2: this.state.password2
-    };
-
-    this.props.signup(user, this.props.history); 
+    dispatch(signup(formData));
   }
 
-  renderErrors() {
+  function renderErrors() {
     return(
       <ul>
-        {Object.keys(this.state.errors).map((error, i) => (
+        {Object.keys(errors).map((error, i) => (
           <li key={`error-${i}`}>
-            {this.state.errors[error]}
+            {errors[error]}
           </li>
         ))}
       </ul>
     );
   }
 
-  render() {
-    return (
-      <div className="signup-form-container">
-        <form onSubmit={this.handleSubmit}>
-          <div className="signup-form">
-            <br/>
-              <input type="text"
-                value={this.state.username}
-                onChange={this.update('username')}
-                placeholder="Username"
-              />
-            <br/>
-              <input type="text"
-                value={this.state.type}
-                onChange={this.update('type')}
-                placeholder="Type"
-              />
-            <br/>
-              <input type="password"
-                value={this.state.password}
-                onChange={this.update('password')}
-                placeholder="Password"
-              />
-            <br/>
-              <input type="password"
-                value={this.state.password2}
-                onChange={this.update('password2')}
-                placeholder="Confirm Password"
-              />
-            <br/>
-            <input type="submit" value="Submit" />
-            {this.renderErrors()}
-          </div>
-        </form>
-      </div>
-    );
-  }
+  
+  return (
+    <div className="signup-form-container">
+      <form onSubmit={handleSubmit}>
+        <div className="signup-form">
+          <br/>
+            <input type="text"
+              value={username}
+              onChange={update('username')}
+              placeholder="Username"
+            />
+          <br/>
+            <input type="text"
+              value={type}
+              onChange={update('type')}
+              placeholder="Type"
+            />
+          <br/>
+            <input type="password"
+              value={password}
+              onChange={update('password')}
+              placeholder="Password"
+            />
+          <br/>
+            <input type="password"
+              value={password2}
+              onChange={update('password2')}
+              placeholder="Confirm Password"
+            />
+          <br/>
+          <input type="submit" value="Submit" />
+          {renderErrors()}
+        </div>
+      </form>
+    </div>
+  );
 }
 
-export default withRouter(SignupForm);
+export default SignupForm;
