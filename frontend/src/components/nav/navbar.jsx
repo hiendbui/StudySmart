@@ -5,18 +5,9 @@ import { logout } from '../../actions/session_actions';
 
 
 const NavBar = () => {
-  // constructor(props) {
-  //   super(props);
-  //   this.logoutUser = this.logoutUser.bind(this);
-  //   this.getLinks = this.getLinks.bind(this);
-  // }
+
   const loggedIn = useSelector(state => state.session.isAuthenticated);
   const dispatch = useDispatch();
-
-  function logoutUser(e) {
-      e.preventDefault();
-      dispatch(logout());
-  }
 
   // Selectively render links dependent on whether the user is logged in
   function getLinks() {
@@ -26,7 +17,7 @@ const NavBar = () => {
                 {/* <Link to={'/tweets'}>All Tweets</Link>
                 <Link to={'/profile'}>Profile</Link>
                 <Link to={'/new_tweet'}>Write a Tweet</Link> */}
-                <button onClick={logoutUser}>Logout</button>
+                <button onClick={() => dispatch(logout())}>Logout</button>
             </div>
         );
       } else {
@@ -39,7 +30,6 @@ const NavBar = () => {
       }
   }
 
-  
   return (
     <div>
         <h1>StudySmart</h1>
