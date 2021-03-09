@@ -10,12 +10,12 @@ function SignupForm() {
 
   const [formData, setFormData] = useState({
     username: '',
-    type: '',
+    role: '',
     password: '',
     password2: '',
   });
   
-  const {username, type, password, password2} = formData;
+  const {username, role, password, password2} = formData;
 
 
   function update(field) {
@@ -47,10 +47,10 @@ function SignupForm() {
         <div className="signup-form">
           <br/>
             <div className="radio">
-              <input type="radio" id="student" name='role' value="student"/>
-              <label for="student">Student</label>
-              <input type="radio" id="instructor" name='role' value="instructor"/>
-              <label for="instructor">Instructor</label>
+              <input type="radio"  name='role' value="student" onChange={update('role')}/>
+              <label>Student</label>
+              <input type="radio" name='role' value="instructor" onChange={update('role')}/>
+              <label>Instructor</label>
             </div>
           <br/>
             <input type="text"

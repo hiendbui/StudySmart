@@ -5,14 +5,14 @@ module.exports = function validateRegisterInput(data) {
   let errors = {};
 
   data.username = validText(data.username) ? data.username : '';
-  data.type = validText(data.type) ? data.type : '';
+  data.role = validText(data.role) ? data.role : '';
   data.password = validText(data.password) ? data.password : '';
   data.password2 = validText(data.password2) ? data.password2 : '';
 
   
-    if (Validator.isEmpty(data.type)) {
-        errors.type = 'Type field is required';
-    }
+  if (Validator.isEmpty(data.role)) {
+      errors.role = "'Student' or 'Instructor' must be selected";
+  }
 
   if (Validator.isEmpty(data.username)) {
     errors.username = 'Username field is required';
