@@ -27,7 +27,7 @@
             background-color:rgb(238, 245, 255);
             width: 75%;
             padding-left:10px;
-            margin-left: 50px;
+            margin-left: 45px;
             margin-right: auto;
             margin-top:5px;
             margin-bottom: 5px;
@@ -44,6 +44,9 @@
         text-align: center;
         background-color: #580029;
         color:white;
+    }
+    .submit:hover{
+        background-color:#3d001e;
     }
     .radio {
         width: 100%;
