@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { signup } from '../../actions/session_actions';
+import './session_form.scss';
 
 function SignupForm() {
   const errors = useSelector(state => state.errors.session);
@@ -40,20 +41,22 @@ function SignupForm() {
 
   
   return (
-    <div className="signup-form-container">
+    <div className="session-form">
+      <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <div className="signup-form">
+          <br/>
+            <div className="radio">
+              <input type="radio" id="student" name='role' value="student"/>
+              <label for="student">Student</label>
+              <input type="radio" id="instructor" name='role' value="instructor"/>
+              <label for="instructor">Instructor</label>
+            </div>
           <br/>
             <input type="text"
               value={username}
               onChange={update('username')}
               placeholder="Username"
-            />
-          <br/>
-            <input type="text"
-              value={type}
-              onChange={update('type')}
-              placeholder="Type"
             />
           <br/>
             <input type="password"
@@ -68,7 +71,7 @@ function SignupForm() {
               placeholder="Confirm Password"
             />
           <br/>
-          <input type="submit" value="Submit" />
+          <input className= "submit" type="submit" value="Submit" />
           {renderErrors()}
         </div>
       </form>

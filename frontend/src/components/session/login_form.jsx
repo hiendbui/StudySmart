@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { login } from '../../actions/session_actions';
-
+import './session_form.scss';
 
 function LoginForm() {
   const errors = useSelector(state => state.errors.session);
@@ -38,7 +38,8 @@ function LoginForm() {
 
   
     return (
-      <div>
+      <div className="session-form">
+        <h1>Login</h1>
         <form onSubmit={handleSubmit}>
           <div>
               <input type="text"
@@ -53,7 +54,7 @@ function LoginForm() {
                 placeholder="Password"
               />
             <br/>
-            <input type="submit" value="Submit" />
+            <input className= "submit" type="submit" value="Submit" />
             {renderErrors()}
           </div>
         </form>

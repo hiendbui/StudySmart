@@ -1,0 +1,54 @@
+.session-form {
+    background-color: white;
+    height:400px;
+    width: 400px;
+    border-radius: 20px;
+    position: absolute;
+    margin-top: min(200px);
+    margin-bottom: min(150px);
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    h1 {
+        color: rgb(0, 41, 88);
+        font-size: 35px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        margin-top: 25px;
+    }
+    form {
+        width: 100%;
+        margin-top: 40px;
+        input {
+            background-color:rgb(238, 245, 255);
+            width: 75%;
+            padding-left:10px;
+            margin-left: 50px;
+            margin-right: auto;
+            margin-top:5px;
+            margin-bottom: 5px;
+            border-radius: 7.5px;
+            height: 25px;
+        }
+    }
+    .submit {
+        text-align: center;
+        background-color: #580029;
+        color:white;
+    }
+    .radio {
+        width: 100%;
+        margin-left: 50px;
+        input {
+            height:15px;
+            width:15px;
+            padding-right: 50px;
+        }
+        label {
+            font-size:15px;
+            padding-left:10px;
+        }
+    }
+}
