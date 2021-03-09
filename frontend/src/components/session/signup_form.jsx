@@ -29,7 +29,7 @@ function SignupForm() {
 
   function renderErrors() {
     return(
-      <ul>
+      <ul className="errors">
         {Object.keys(errors).map((error, i) => (
           <li key={`error-${i}`}>
             {errors[error]}

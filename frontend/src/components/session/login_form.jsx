@@ -26,7 +26,7 @@ function LoginForm() {
   // Render the session errors if there are any
   function renderErrors() {
     return(
-      <ul>
+      <ul className="errors">
         {Object.keys(errors).map((error, i) => (
           <li key={`error-${i}`}>
             {errors[error]}
@@ -41,6 +41,8 @@ function LoginForm() {
       <div className="session-form">
         <h1>Login</h1>
         <form onSubmit={handleSubmit}>
+          <br/>
+          <br/>
           <div>
               <input type="text"
                 value={formData.username}

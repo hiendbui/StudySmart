@@ -17,6 +17,7 @@
         margin-right: auto;
         text-align: center;
         margin-top: 25px;
+        font-weight: bold;
     }
     form {
         width: 100%;
@@ -29,8 +30,13 @@
             margin-right: auto;
             margin-top:5px;
             margin-bottom: 5px;
-            border-radius: 7.5px;
+            border-radius: 10px;
             height: 25px;
+            border: 2px solid white;
+        }
+        input:focus {
+
+            border: 2px solid #00418B;
         }
     }
     .submit {
@@ -50,5 +56,9 @@
             font-size:15px;
             padding-left:10px;
         }
+    }
+    .errors {
+        text-align: center;
+        color: red;
     }
 }
