@@ -1,3 +1,5 @@
+@import "../colors.scss";
+
 .session-form {
     background-color: white;
     height:400px;
@@ -11,7 +13,7 @@
     transform: translate(-50%, -50%);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.123);
     h1 {
-        color: rgb(0, 41, 88);
+        color: $dark-blue;
         font-size: 35px;
         width: 100%;
         margin-left: auto;
@@ -42,12 +44,12 @@
     }
     .submit {
         text-align: center;
-        background-color: #580029;
+        background-color: $dark-red;
         color:white;
         height:30px;
     }
     .submit:hover{
-        background-color:#3d001e;
+        background-color: $dark-red-hover;
     }
     .radio {
         width: 100%;
