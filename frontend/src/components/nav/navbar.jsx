@@ -37,7 +37,7 @@ const NavBar = () => {
 
   return (
     <div className="nav">
-        <h1>StudySmart</h1>
+        <h1 onClick={() => handleClick('')}>StudySmart</h1>
         { getLinks() }
     </div>
   );
