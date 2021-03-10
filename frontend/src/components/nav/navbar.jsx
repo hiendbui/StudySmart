@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router";
 import { logout } from '../../actions/session_actions';
 import { clearErrors } from '../../actions/session_actions';
+import { Link } from 'react-router-dom';
 import './navbar.scss';
 
 const NavBar = () => {
@@ -19,9 +20,7 @@ const NavBar = () => {
       if (loggedIn) {
         return (
             <div className='links'>
-                {/* <Link to={'/tweets'}>All Tweets</Link>
-                <Link to={'/profile'}>Profile</Link>
-                <Link to={'/new_tweet'}>Write a Tweet</Link> */}
+                <button><Link to={'/'}>Home</Link></button>
                 <button onClick={() => dispatch(logout())}>Logout</button>
             </div>
         );
