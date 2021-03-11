@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const FlashcardSchema = new Schema({
     quiz: {
         type: Schema.Types.ObjectId,
-        ref: 'Quiz'
+        ref: 'Quiz',
+        required: true
     },
     front: {
         type: String,
@@ -15,7 +16,7 @@ const FlashcardSchema = new Schema({
         required: true
     },
     difficulty: {
-        type: String,
+        type: String, //easy,medium,hard
         required: true
     }
 }, {
