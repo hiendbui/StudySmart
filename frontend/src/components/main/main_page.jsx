@@ -1,17 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchAllQuizzes } from '../../actions/quiz_actions';
 
-class MainPage extends React.Component {
+function MainPage() {
+  const dispatch = useDispatch();
 
-  render() {
-    return (
+  
+  
+  const quizzes = useSelector(state => Object.values(state.entities.quizzes));
+  if (!quizzes.length) dispatch(fetchAllQuizzes());
+  
+  return (
       <div>
-        <h1>StudySmart</h1>
+        <ul>
+          {quizzes.map((quiz)=>{
+            return (
+              <li>{quiz.topic}</li>
+            )
+          })}
+        </ul>
         <footer>
           Created by Hien Bui &copy; 2021
         </footer>
       </div>
-    );
-  }
+  );
+  
 }
 
 export default MainPage;
