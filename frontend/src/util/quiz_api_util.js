@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const fetchQuizzes = () => {
+export const fetchAllQuizzes = () => {
     return axios.get('api/quizzes')
 };
 

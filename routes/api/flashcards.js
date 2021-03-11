@@ -17,6 +17,7 @@ router.post('/',
       });
       
       newFlashcard.save().then(flashcard => {
+          //find quiz with Id and append flashcard id to its 'flashcards' property
           Quiz.findById(req.body.quiz)
             .then(quiz => {
                 quiz.flashcards.push(flashcard.id);

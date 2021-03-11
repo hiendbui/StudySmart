@@ -8,7 +8,10 @@ router.get('/', (req, res) => {
     Quiz.find()
         .then(quizzes => {
             const quizMap = new Map();
-            quizzes.forEach(quiz => quizMap[quiz._id] = quiz);
+            quizzes.forEach(quiz => {
+                quiz.flashcards = undefined
+                quizMap[quiz._id] = quiz;
+            });
             return res.json(quizMap);
         })
         .catch(err => res.status(404).json({ noquizzesfound: 'No quizzes found' }));
