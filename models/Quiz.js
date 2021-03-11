@@ -9,7 +9,11 @@ const QuizSchema = new Schema({
     description: {
         type: String,
         required: true
-    }
+    },
+    flashcards: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Flashcard'
+    }]
 }, {
   timestamps: true
 })
