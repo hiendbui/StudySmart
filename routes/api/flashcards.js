@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const Flashcard = require('../../models/Flashcard');
+const Quiz = require('../../models/Quiz')
 
 
 // create flashcard for a given quiz
@@ -15,7 +16,14 @@ router.post('/',
         difficulty: req.body.difficulty
       });
       
-      newFlashcard.save().then(flashcard => res.json(flashcard));
+      newFlashcard.save().then(flashcard => {
+          Quiz.findById(req.body.quiz)
+            .then(quiz => {
+                quiz.flashcards.push(flashcard.id);
+                quiz.save();
+            });
+          return res.json(flashcard)
+      });
     }
 );
 

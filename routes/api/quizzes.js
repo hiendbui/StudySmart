@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     Quiz.findById(req.params.id)
         .populate('flashcards')
-        .then(quiz => res.json({quiz, flashcards: quiz.flashcards}))
+        .then(quiz => res.json({quiz}))
         .catch(err =>
                 res.status(404).json({ noquizzesfound: 'No quiz found with that ID' })
         )
