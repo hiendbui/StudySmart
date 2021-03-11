@@ -15,10 +15,6 @@ const FlashcardSchema = new Schema({
         type: String,
         required: true
     },
-    difficulty: {
-        type: String, //easy,medium,hard
-        required: true
-    }
 }, {
   timestamps: true
 })

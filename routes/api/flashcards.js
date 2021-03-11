@@ -12,8 +12,7 @@ router.post('/',
       const newFlashcard = new Flashcard({
         quiz: req.body.quiz,
         front: req.body.front,
-        back: req.body.back,
-        difficulty: req.body.difficulty
+        back: req.body.back
       });
       
       newFlashcard.save().then(flashcard => {
@@ -48,7 +47,6 @@ router.patch('/:id',
             .then(flashcard => {
                 flashcard.front = req.body.front;
                 flashcard.back = req.body.back;
-                flashcard.difficulty = req.body.difficulty;
                 flashcard.save().then(flashcard => res.json(flashcard));
             })
             .catch(err =>
