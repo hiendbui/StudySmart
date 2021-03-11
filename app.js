@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const db = require("./config/keys").mongoURI;
 const users = require("./routes/api/users");
 const quizzes = require("./routes/api/quizzes");
+const flashcards = require("./routes/api/flashcards")
 const bodyParser = require('body-parser');
 const passport = require('passport');
 
@@ -20,6 +21,7 @@ app.use(bodyParser.json());
 
 app.use("/api/users", users);
 app.use("/api/quizzes", quizzes);
+app.use("/api/flashcards", flashcards);
 app.use(passport.initialize());
 require('./config/passport')(passport);
 
