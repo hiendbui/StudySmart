@@ -10,6 +10,16 @@ router.get('/', (req, res) => {
         .catch(err => res.status(404).json({ noquizzesfound: 'No quizzes found' }));
 });
 
+//get specific quiz with all flashcards
+router.get('/:id', (req, res) => {
+    Quiz.findById(req.params.id)
+        .populate('flashcards')
+        .then(quiz => res.json({quiz, flashcards: quiz.flashcards}))
+        .catch(err =>
+                res.status(404).json({ noquizzesfound: 'No quiz found with that ID' })
+        )
+});
+
 //create quiz
 router.post('/',
     passport.authenticate('jwt', { session: false }),
