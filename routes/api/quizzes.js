@@ -2,23 +2,18 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const Quiz = require('../../models/Quiz');
-const validateQuizInput = require('../../validation/quizzes');
 
+//get all quizzes
 router.get('/', (req, res) => {
     Quiz.find()
         .then(quizzes => res.json(quizzes))
         .catch(err => res.status(404).json({ noquizzesfound: 'No quizzes found' }));
 });
 
+//create quiz
 router.post('/',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
-      const { errors, isValid } = validateQuizInput(req.body);
-  
-      if (!isValid) {
-        return res.status(400).json(errors);
-      }
-  
       const newQuiz = new Quiz({
         topic: req.body.topic,
         description: req.body.description
@@ -45,12 +40,6 @@ router.delete('/:id',
 router.patch('/:id',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
-        const { errors, isValid } = validateQuizInput(req.body);
-    
-        if (!isValid) {
-            return res.status(400).json(errors);
-        }
-
         Quiz.findById(req.params.id)
             .then(quiz => {
                 quiz.topic = req.body.topic;
