@@ -14,6 +14,9 @@ const QuizzesReducer = (state = {}, action) => {
         delete action.quiz.flashcards;
         newState[action.quiz._id] = action.quiz;
         return newState;
+    case REMOVE_QUIZ:
+        delete newState[action.quizId];
+        return newState;
     default:
       return state;
   }

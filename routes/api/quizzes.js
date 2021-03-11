@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
         .then(quizzes => {
             const quizMap = new Map();
             quizzes.forEach(quiz => {
-                quiz.flashcards = undefined
+                quiz.flashcards = undefined // to keep redux state flat
                 quizMap[quiz._id] = quiz;
             });
             return res.json(quizMap);
@@ -61,7 +61,10 @@ router.patch('/:id',
             .then(quiz => {
                 quiz.topic = req.body.topic;
                 quiz.description = req.body.description;
-                quiz.save().then(quiz => res.json(quiz));
+                quiz.save().then(quiz => {
+                    quiz.flashcards = undefined;  // to keep redux state flat
+                    return res.json(quiz)
+                });
             })
             .catch(err =>
                 res.status(404).json({ noquizzesfound: 'No quiz found with that ID' })

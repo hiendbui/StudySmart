@@ -9,13 +9,13 @@ const receiveAllQuizzes = quizzes => ({
     quizzes
 });
 
-const receiveQuiz = data => ({
+const receiveQuiz = quiz => ({
     type: RECEIVE_QUIZ,
-    quiz: data.quiz,
-    flashcards: data.quiz.flashcards
+    quiz,
+    flashcards: quiz.flashcards
 })
 
-const removeQuiz = quizId => ({
+export const removeQuiz = quizId => ({
     type: REMOVE_QUIZ,
     quizId
 })
@@ -28,17 +28,20 @@ export const fetchAllQuizzes = () => dispatch => (
 
 export const fetchQuiz = id => dispatch => (
     APIUtil.fetchQuiz(id)
-        .then(payload => dispatch(receiveQuiz(payload.data)))
+        .then(res => dispatch(receiveQuiz(res.data.quiz)))
 );
 
-// export const createQuiz = quiz => {
-//     return axios.post('api/quizzes', quiz)
-// };
+export const createQuiz = quiz => dispatch => (
+    APIUtil.createQuiz(quiz)
+        .then(res => dispatch(receiveQuiz(res.data)))
+);
 
-// export const deleteQuiz = id => {
-//     return axios.delete(`api/quizzes/${id}`);
-// };
+export const deleteQuiz = id => dispatch => {
+    APIUtil.deleteQuiz(id)
+        .then(()=> dispatch(removeQuiz(id)));
+};
 
-// export const updateQuiz = (id, quiz) => {
-//     return axios.patch(`api/quizzes/${id}`, quiz);
-// };
+export const updateQuiz = (id, quiz) => dispatch => {
+     APIUtil.updateQuiz(id, quiz)
+        .then((res)=> dispatch(receiveQuiz(res.data)));
+};

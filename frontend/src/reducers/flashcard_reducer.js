@@ -7,6 +7,7 @@ const FlashcardsReducer = (state = {}, action) => {
   Object.freeze(state);
   switch(action.type) {
     case RECEIVE_QUIZ:
+        if (!action.flashcards) return state;
         const cardsObj = {};
         action.flashcards.forEach(flashcard => cardsObj[flashcard._id] = flashcard);
         return cardsObj;
