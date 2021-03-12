@@ -1,0 +1,21 @@
+@import "../colors.scss";
+
+.quiz-container {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: min(100px);
+    margin-bottom: min(150px);
+    background-color: white;
+    width:75%;
+    min-height: 100px;
+    border-radius: 20px;
+    h1 {
+        color: $dark-blue;
+        font-size:30px;
+        font-weight:bold;
+        text-align: center;
+    }
+    .quizzes {
+        text-align: center;
+    }
+}

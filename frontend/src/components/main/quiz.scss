@@ -1,0 +1,12 @@
+@import "../colors.scss";
+
+.quiz {
+    height: min(150px);
+    width: min(250px);
+    background-color: $dark-red;
+    color: white;
+    text-align: center;
+    display: inline-grid;
+    margin: 25px;
+    justify-items: center;
+}
