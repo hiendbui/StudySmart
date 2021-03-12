@@ -3,13 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchQuiz } from '../../actions/quiz_actions';
 
 
-// function MainPage() {
-//   const dispatch = useDispatch();
+function QuizEditForm() {
+  const dispatch = useDispatch();
 
 //   const quizzes = useSelector(state => Object.values(state.entities.quizzes));
 //   if (!quizzes.length) dispatch(fetchAllQuizzes());
   
-//   const userRole = useSelector(state => state.session.user?.role);
+  
 //   return (
 //       <div className='main'>
 //         <div className='quiz-container'>
@@ -26,6 +26,6 @@ import { fetchQuiz } from '../../actions/quiz_actions';
 //       </div>
 //   );
   
-// }
+}
 
-// export default QuizForm;
+export default QuizEditForm;
