@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { fetchQuiz } from '../../actions/quiz_actions';
 
 
 function QuizEditForm() {
-  const dispatch = useDispatch();
-
-//   const quizzes = useSelector(state => Object.values(state.entities.quizzes));
-//   if (!quizzes.length) dispatch(fetchAllQuizzes());
+    const dispatch = useDispatch();
+    const { quizId } = useParams();
+    //fetch Quiz with flashcards
+    useEffect(() => dispatch(fetchQuiz(quizId)), []);
+    
+    const flashcards = useSelector(state => Object.values(state.entities.flashcards));
   
+    return (
+        <h1>{quizId}</h1>
+    )
   
 //   return (
 //       <div className='main'>

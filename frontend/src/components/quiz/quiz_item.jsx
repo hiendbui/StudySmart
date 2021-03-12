@@ -14,9 +14,8 @@ function QuizItem({quiz, isInstructor}) {
     const [dropdownClassName, toggleDropdown] = useState('hidden');
     const next = dropdownClassName === 'hidden' ? 'dropdown' : 'hidden';
 
-    const icon = isInstructor ? <BiDotsHorizontal className='edit' onClick={()=>toggleDropdown(next)}/> : null
+    const icon = isInstructor ? <BiDotsHorizontal className='edit' onClick={()=>toggleDropdown(next)}/> : <br/>
     const dropdown = () => {
-        console.log(dropdownClassName);
         return (
             <div className={dropdownClassName}>
                 <button onClick={() => history.push(`/quiz/edit/${quiz._id}`)}>

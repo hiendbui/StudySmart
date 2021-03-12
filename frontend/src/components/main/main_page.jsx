@@ -10,7 +10,10 @@ function MainPage() {
   const dispatch = useDispatch();
 
   const quizzes = useSelector(state => Object.values(state.entities.quizzes));
-  if (!quizzes.length) dispatch(fetchAllQuizzes());
+  // fetch all quizzes on initial load
+  useEffect(()=>dispatch(fetchAllQuizzes()),[]);
+  
+  //checks if current user is an instructor
   const isInstructor = useSelector(state => state.session.user?.role) === 'instructor';
 
   const [modalClassName, toggleModal] = useState('hidden')
