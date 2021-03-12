@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchAllQuizzes, createQuiz } from '../../actions/quiz_actions';
+import { fetchAllQuizzes } from '../../actions/quiz_actions';
 import QuizItem from '../quiz/quiz_item';
 import QuizCreateForm from '../quiz/quiz_create';
 import { MdAddToPhotos } from 'react-icons/md'
@@ -11,23 +11,26 @@ function MainPage() {
 
   const quizzes = useSelector(state => Object.values(state.entities.quizzes));
   if (!quizzes.length) dispatch(fetchAllQuizzes());
-  const userRole = useSelector(state => state.session.user?.role);
+  const isInstructor = useSelector(state => state.session.user?.role) === 'instructor';
 
   const [modalClassName, toggleModal] = useState('hidden')
   
-  const createIcon = <MdAddToPhotos 
-                        className='add-icon'
+  const createIcon = <MdAddToPhotos className='icon'
                         onClick={() => toggleModal('modal-screen')}
                       />
   return (
       <div className='main'>
         <div className='quiz-container'>
           <h1>Flashcard Quizzes</h1>
-          { userRole === 'instructor' ? createIcon : null}
+          { isInstructor ? createIcon : null}
           <div className='quizzes'>
             {quizzes.map((quiz)=>{
               return (
-                <QuizItem quiz={quiz} key={quiz._id}/>
+                <QuizItem 
+                  key={quiz._id} 
+                  quiz={quiz} 
+                  isInstructor={isInstructor}
+                />
               )
             })}
           </div>

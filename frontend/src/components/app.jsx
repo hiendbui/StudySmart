@@ -13,7 +13,7 @@ const App = () => (
     <NavBar />
     <Switch>
         <Route exact path="/" component={MainPage} />
-        {/* <InstructorRoute exact path="/quiz/create" component={QuizForm}/> */}
+        {/* <InstructorRoute exact path="/quiz/edit/:quizID" component={QuizForm}/> */}
         <AuthRoute exact path="/login" component={LoginForm} />
         <AuthRoute exact path="/signup" component={SignupForm} />
     </Switch>
