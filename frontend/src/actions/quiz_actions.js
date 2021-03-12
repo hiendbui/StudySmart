@@ -23,7 +23,7 @@ export const removeQuiz = quizId => ({
 
 export const fetchAllQuizzes = () => dispatch => (
     APIUtil.fetchAllQuizzes()
-        .then(quizzes => dispatch(receiveAllQuizzes(quizzes)))
+        .then(quizzes => dispatch(receiveAllQuizzes(quizzes.data)))
 );
 
 export const fetchQuiz = id => dispatch => (

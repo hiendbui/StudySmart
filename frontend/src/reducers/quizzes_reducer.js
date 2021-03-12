@@ -9,7 +9,7 @@ const QuizzesReducer = (state = {}, action) => {
   const newState = {...state};
   switch(action.type) {
     case RECEIVE_ALL_QUIZZES:
-        return action.quizzes.data;
+        return action.quizzes;
     case RECEIVE_QUIZ:
         delete action.quiz.flashcards;
         newState[action.quiz._id] = action.quiz;
