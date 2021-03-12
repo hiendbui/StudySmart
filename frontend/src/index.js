@@ -5,8 +5,8 @@ import configureStore from './store/store';
 import jwt_decode from 'jwt-decode';
 import { setAuthToken } from './util/session_api_util';
 import { logout } from './actions/session_actions';
-import * as quizActions from './actions/quiz_actions';
-// import * as FlashcardAPIUtil from './util/flashcard_api_util';
+import * as flashcardActions from './actions/flashcard_actions';
+
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
 
   ReactDOM.render(<Root store={store} />, root);
-  window.quiz = quizActions;
   window.dispatch = store.dispatch;
-  // window.flashcard = FlashcardAPIUtil;
+  window.flashcard = flashcardActions;
 });
