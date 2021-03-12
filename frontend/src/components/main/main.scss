@@ -1,6 +1,7 @@
 @import "../colors.scss";
 
 .quiz-container {
+    z-index:-2;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.123);
     margin-left: auto;
     margin-right: auto;
@@ -17,23 +18,28 @@
         font-weight:bold;
         text-align: center;
     }
-    .add-icon {
-        float: right;
-        font-size: 25px;
-        margin-right: 15px;
-        margin-left: -50px;
-        margin-top: -30px;
-        border-radius:25px;
-        padding:5px;
-        display: inline;
-    }
-    .add-icon:hover {
-        cursor: pointer;
-        background-color: rgba(161, 161, 161, 0.541);
-    }
     .quizzes {
         text-align: center;
     }
+}
+
+.icon {
+    float: right;
+    font-size: 25px;
+    margin-right: 15px;
+    margin-left: -50px;
+    margin-top: -30px;
+    border-radius:25px;
+    padding:5px;
+    display: inline;
+}
+.icon:hover {
+    cursor: pointer;
+    background-color: rgba(161, 161, 161, 0.541);
+}
+
+.close {
+    margin-top: -60px;
 }
 
 .hidden{

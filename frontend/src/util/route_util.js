@@ -32,7 +32,7 @@ const Instructor = ({ component: Component, loggedIn, isInstructor, ...rest }) =
 
 const mapStateToProps = state => ({
     loggedIn: state.session.isAuthenticated,
-    isInstructor: state.session.user.role
+    isInstructor: state.session.user?.role
 });
 
 export const AuthRoute = withRouter(connect(mapStateToProps)(Auth));
