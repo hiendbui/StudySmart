@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllQuizzes } from '../../actions/quiz_actions';
-import QuizItem from '../quiz/quiz_item';
-import QuizCreateForm from '../quiz/quiz_create';
+import QuizItem from '../quiz/quiz_index_item';
+import QuizForm from '../quiz/quiz_form';
 import { MdAddToPhotos } from 'react-icons/md'
 import './main.scss';
 
@@ -40,7 +40,8 @@ function MainPage() {
         </div>
         {/* create quiz form */}
         <div className={modalClassName}>
-          <QuizCreateForm toggleModal={toggleModal}/>
+          {/* Specify form is for creating quiz */}
+          <QuizForm toggleModal={toggleModal} formType={'Create'}/>
         </div>
       </div>
   );

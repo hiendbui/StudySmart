@@ -16,6 +16,6 @@ export const deleteQuiz = id => {
     return axios.delete(`api/quizzes/${id}`);
 };
 
-export const updateQuiz = (id, quiz) => {
+export const updateQuiz = (quiz, id) => {
     return axios.patch(`api/quizzes/${id}`, quiz);
 };

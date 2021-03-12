@@ -6,7 +6,7 @@ import NavBar from './nav/navbar';
 import MainPage from './main/main_page';
 import LoginForm from './session/login_form';
 import SignupForm from './session/signup_form';
-import QuizForm from './quiz/quiz_edit';
+import QuizForm from './quiz/quiz';
 
 const App = () => (
   <div>

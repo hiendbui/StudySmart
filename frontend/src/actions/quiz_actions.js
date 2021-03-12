@@ -41,7 +41,7 @@ export const deleteQuiz = id => dispatch => {
         .then(()=> dispatch(removeQuiz(id)));
 };
 
-export const updateQuiz = (id, quiz) => dispatch => {
-     APIUtil.updateQuiz(id, quiz)
+export const updateQuiz = (quiz, id) => dispatch => {
+     APIUtil.updateQuiz(quiz, id)
         .then((res)=> dispatch(receiveQuiz(res.data)));
 };
