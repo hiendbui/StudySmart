@@ -1,6 +1,6 @@
 @import "../colors.scss";
 
-.session-form {
+.session-form, .create-form{
     background-color: white;
     height:400px;
     width: 400px;
@@ -25,7 +25,7 @@
     form {
         width: 100%;
         margin-top: 40px;
-        input {
+        input, textarea {
             background-color:rgb(238, 245, 255);
             width: 75%;
             padding-left:10px;
@@ -37,7 +37,10 @@
             height: 25px;
             border: 2px solid white;
         }
-        input:focus {
+        textarea {
+            height:75px;
+        }
+        input:focus, textarea:focus {
 
             border: 2px solid #00418B;
         }

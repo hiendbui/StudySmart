@@ -14,15 +14,15 @@ const Auth = ({ component: Component, path, loggedIn, exact }) => (
   )} />
 );
 
-const Protected = ({ component: Component, loggedIn, ...rest }) => (
+const Instructor = ({ component: Component, loggedIn, isInstructor, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      loggedIn ? (
+      loggedIn && isInstructor ? (
         <Component {...props} />
       ) : (
-        // Redirect to the login page if the user is already authenticated
-        <Redirect to="/login" />
+        // Redirect to the main page if the user is not logged in or is a student
+        <Redirect to="/" />
       )
     }
   />
@@ -30,10 +30,11 @@ const Protected = ({ component: Component, loggedIn, ...rest }) => (
 
 // Use the isAuthenitcated slice of state to determine whether a user is logged in
 
-const mapStateToProps = state => (
-  {loggedIn: state.session.isAuthenticated}
-);
+const mapStateToProps = state => ({
+    loggedIn: state.session.isAuthenticated,
+    isInstructor: state.session.user.role
+});
 
 export const AuthRoute = withRouter(connect(mapStateToProps)(Auth));
 
-export const ProtectedRoute = withRouter(connect(mapStateToProps)(Protected));
+export const InstructorRoute = withRouter(connect(mapStateToProps)(Instructor));
