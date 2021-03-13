@@ -40,8 +40,8 @@ function QuizItem({quiz, isInstructor}) {
         <div className='quiz' >
             {icon}
             {dropdown()}
-            <h2>{quiz.topic}</h2>
-            <h4>{quiz.description}</h4>
+            <h2 className='front'>{quiz.topic}</h2>
+            <h4 className='back'>{quiz.description}</h4>
         </div>
     )
 };

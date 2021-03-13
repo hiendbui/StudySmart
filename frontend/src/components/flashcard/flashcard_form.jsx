@@ -32,7 +32,7 @@ function FlashcardForm({toggleModal, formType, flashcard}) {
         <form onSubmit={handleSubmit}>
           <br/>
           <br/>
-          <div>
+          <div className={formType === 'Edit' ? 'edit-input' :''}>
               <input type="text"
                 value={formData.front}
                 onChange={update('front')}
