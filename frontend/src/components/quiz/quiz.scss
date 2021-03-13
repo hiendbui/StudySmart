@@ -90,3 +90,21 @@
     cursor: pointer;
     background-color: rgba(161, 161, 161, 0.541);
 }
+
+.quiz {
+    .front {
+        margin-top:-20px;
+    }
+    .back {
+        display:none;
+    }
+}
+.quiz:hover {
+    .front {
+        display:none;
+    }
+    .back {
+        margin-top:-20px;
+        display:block;
+    }
+}
