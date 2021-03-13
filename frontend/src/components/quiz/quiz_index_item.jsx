@@ -41,7 +41,7 @@ function QuizItem({quiz, isInstructor}) {
             {icon}
             {dropdown()}
             <h2>{quiz.topic}</h2>
-            <h3>{quiz.description}</h3>
+            <h4>{quiz.description}</h4>
         </div>
     )
 };

@@ -5,6 +5,8 @@ import { fetchQuiz } from '../../actions/quiz_actions';
 import { MdAddBox } from 'react-icons/md'
 import { BsPencilSquare } from 'react-icons/bs'
 import QuizForm from './quiz_form';
+import FlashcardForm from '../flashcard/flashcard_form';
+import FlashcardItem from '../flashcard/flashcard_index_item';
 import '../main/main.scss';
 import '../quiz/quiz.scss';
 
@@ -27,13 +29,12 @@ function QuizEditForm() {
             <div className='main'>
                 <div className='quiz-container'>
                 <h1>Flashcards for {quiz.topic} Quiz  {editQuizIcon}</h1>
-                
                 <MdAddBox className='icon' onClick={()=>toggleCreateModal('modal-screen')}/>
+                <h3>Description: {quiz.description} </h3>
                 <div className='flashcards'>
                   {flashcards.map((flashcard)=>{
                     return (
-                    //   <QuizItem quiz={quiz} key={quiz._id}/>
-                        <h1>flashcard</h1>
+                      <FlashcardItem flashcard={flashcard} key={flashcard._id}/>
                     )
                   })}
                 </div>
@@ -45,6 +46,14 @@ function QuizEditForm() {
                         toggleModal={toggleQuizModal} 
                         formType={'Edit'} 
                         quiz={quiz}
+                    />
+                </div>
+
+                <div className={createModal}>
+                    {/* Specify form is for editing quiz and pass in quiz */}
+                    <FlashcardForm 
+                        toggleModal={toggleCreateModal} 
+                        formType={'Create'} 
                     />
                 </div>
             </div>

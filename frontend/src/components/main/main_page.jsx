@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchAllQuizzes } from '../../actions/quiz_actions';
+import { fetchAllQuizzes, removeQuiz } from '../../actions/quiz_actions';
 import QuizItem from '../quiz/quiz_index_item';
 import QuizForm from '../quiz/quiz_form';
 import { MdAddToPhotos } from 'react-icons/md'
@@ -10,9 +10,9 @@ function MainPage() {
   const dispatch = useDispatch();
 
   const quizzes = useSelector(state => Object.values(state.entities.quizzes));
-  // fetch all quizzes on initial load
-  useEffect(()=>dispatch(fetchAllQuizzes()),[]);
   
+  useEffect(()=>dispatch(removeQuiz()),[]); //empty flashcards in state
+  useEffect(()=>dispatch(fetchAllQuizzes()),[]);// fetch all quizzes on initial load
   //checks if current user is an instructor
   const isInstructor = useSelector(state => state.session.user?.role) === 'instructor';
 
