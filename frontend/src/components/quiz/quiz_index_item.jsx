@@ -41,7 +41,7 @@ function QuizItem({quiz, isInstructor}) {
             {icon}
             {dropdown()}
             <h2 className='front'>{quiz.topic}</h2>
-            <h4 className='back'>{quiz.description}</h4>
+            <h4 className='back' onClick={() => history.push(`/quiz/${quiz._id}`)}>{quiz.description}</h4>
         </div>
     )
 };

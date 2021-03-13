@@ -1,7 +1,6 @@
 @import "../colors.scss";
 
 .quiz, .flashcard{
-    z-index: 999;
     height: 150px;
     width: 250px;
     background-color: $dark-red;
@@ -25,13 +24,13 @@
 }
 
 .quiz:hover, .flashcard:hover {
-    cursor: pointer;
     background-color: $dark-red-hover;
 }
 
 .quiz:hover {
     box-shadow: -8px 5.5px $dark-red;
 }
+
 
 .back-card {
     height: 150px;
@@ -41,9 +40,14 @@
 }
 
 .edit {
+    z-index: 999d;
     color:white;
     justify-self: right;
     font-size: 25px;
+}
+
+.edit:hover {
+    cursor: pointer;
 }
 
 .dropdown {
@@ -106,5 +110,49 @@
     .back {
         margin-top:-20px;
         display:block;
+    }
+    .back:hover {
+        cursor: pointer;
+    }
+}
+
+.quiz-card-container {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.123);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: min(50px);
+    margin-bottom: min(75px);
+    background-color: white;
+    width:75%;
+    padding-bottom: calc(10vw);
+    border-radius: 20px;
+    h1, h3{
+        padding-top:10px;
+        color: $dark-blue;
+        font-weight:bold;
+        text-align: center;
+    }
+    h1 {
+        font-size:20px;
+    }
+    text-align: center;
+    .flashcard-quiz {
+        width: 75%;
+        height: calc(35vw);
+        object-fit: cover;
+        // max-height: 300px;
+        background-color: $dark-red;
+        color: white;
+        display: inline-grid;
+        margin: 25px;
+        justify-items: center;
+        border-radius: 5px;
+        border: 1px solid rgb(49, 0, 0);
+        h2 {
+            font-size: 20px;
+        }
+        h3 {
+            font-size: 15px;
+        }
     }
 }
