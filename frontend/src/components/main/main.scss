@@ -11,14 +11,16 @@
     width:75%;
     min-height: 100px;
     border-radius: 20px;
-    h1 {
+    h1, h3{
         padding-top:10px;
         color: $dark-blue;
-        font-size:20px;
         font-weight:bold;
         text-align: center;
     }
-    .quizzes {
+    h1 {
+        font-size:20px;
+    }
+    .quizzes, .flashcards {
         text-align: center;
     }
 }

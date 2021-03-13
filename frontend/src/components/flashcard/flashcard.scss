@@ -1,0 +1,17 @@
+.flashcard {
+    .front {
+        margin-top:-20px;
+    }
+    .back {
+        display:none;
+    }
+}
+.flashcard:hover {
+    .front {
+        display:none;
+    }
+    .back {
+        margin-top:-20px;
+        display:block;
+    }
+}
