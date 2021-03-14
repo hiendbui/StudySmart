@@ -23,7 +23,7 @@ export const deleteFlashcard = id => dispatch => {
         .then(() => dispatch(removeFlashcard(id)));
 };
 
-export const updateFlashcard = (id, flashcard) => dispatch => {
-     APIUtil.updateFlashcard(id, flashcard)
+export const updateFlashcard = (flashcard,id) => dispatch => {
+     APIUtil.updateFlashcard(flashcard, id)
         .then((res)=> dispatch(receiveFlashcard(res.data)));
 };

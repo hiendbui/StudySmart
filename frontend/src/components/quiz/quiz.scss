@@ -136,7 +136,7 @@
         font-size:20px;
     }
     text-align: center;
-    .flashcard-quiz {
+    .front, .back {
         width: 75%;
         height: calc(35vw);
         object-fit: cover;
@@ -148,11 +148,39 @@
         justify-items: center;
         border-radius: 5px;
         border: 1px solid rgb(49, 0, 0);
+        align-items: center;
         h2 {
             font-size: 20px;
         }
-        h3 {
+        h4 {
             font-size: 15px;
         }
+    }
+    .front {
+        h4 {
+            display:none;
+        }
+    }
+    .back {
+        h2 {
+            display:none;
+        }
+    }
+    .flip {
+        font-size: 20px;
+        
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+    .flip:hover {
+        cursor: pointer;
+    }
+    .front-icon>*:last-child {
+        display:none;
+    }
+    .back-icon>*:first-child {
+        display:none;
     }
 }
