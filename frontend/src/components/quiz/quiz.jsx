@@ -50,13 +50,16 @@ function Quiz() {
                         {console.log(`${cardClassName}-icon`)}
                         <BsArrowClockwise 
                             className={`flip`}
-                            onClick={()=>{flipCard('back')}} 
+                            onClick={()=>{
+                                flipCard('back')
+                            }} 
                          />
                         <BsArrowCounterclockwise 
                             className={`flip `} 
                             onClick={()=>{flipCard('front')}} 
                         />
                     </div>
+                    
                 </div>
             </div>
         )
