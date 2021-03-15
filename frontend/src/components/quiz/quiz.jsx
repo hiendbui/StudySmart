@@ -18,23 +18,21 @@ function Quiz() {
 
     const flashcards = useSelector(state => state.entities.flashcards);
     const initialIds = Object.keys(flashcards);
-    shuffle(initialIds);
+    shuffle(initialIds); // randomize order of flashcards
     const initialFlashcardCount = {};
     initialIds.forEach(id => initialFlashcardCount[id] = 2);
 
-    // console.log(initialFlashcardCount);
-    // const initialBuckets = [[...flashcardIds],[]];
-    const [flashcardCount, setFlashcardCount] = useState({});
-    const [flashcardIds, setFlashcardIds] = useState([]);
-    const [curFlashcard, setCurFlashcard] = useState({});
+   
+    const [flashcardCount, setFlashcardCount] = useState({}); //record of how many more times each flashcard will show up
+    const [flashcardIds, setFlashcardIds] = useState([]); //ids of flashcards to display, updated after each round
+    const [curFlashcard, setCurFlashcard] = useState({}); //current flashcard to display
     
-    const [cardClassName, flipCard] = useState('front');
-    const [btnsClassName, toggleBtns] = useState('hide');
-
-    useEffect(() => setFlashcardCount(initialFlashcardCount), [quiz]);
+    
+    //update variables in state once quiz is fetched
+    useEffect(() => setFlashcardCount(initialFlashcardCount), [quiz]); 
     useEffect(() => setFlashcardIds(initialIds), [quiz]);
     useEffect(() => setCurFlashcard(flashcards[initialIds[0]]), [quiz]);
-  
+
     function shuffle(arr) {
         for (let i = arr.length - 1; i > 0; i--) {
             let j = Math.floor(Math.random() * (i + 1));
@@ -43,29 +41,47 @@ function Quiz() {
     }
 
    
+    const [numRight, setNumRight] = useState(0);
+    const [numCards, setNumCards] = useState(0);
+    // console.log(numRight,numCards);
     const [i, setI] = useState(0);
     function nextFlashcard(res) {
+        setNumCards(prevNum => prevNum + 1);
+
         const id = flashcardIds[i];
-        if (res === 'right') {
-            flashcardCount[id] === 1 ? delete flashcardCount[id] : flashcardCount[id]--;
-        } else if (res === 'wrong') {
+        if (res === 'right') { // if user got it right, decrement # of times card will show up
+            flashcardCount[id] === 1 ? delete flashcardCount[id] : flashcardCount[id]--; 
+            setNumRight(prevNum => prevNum + 1);
+        } else if (res === 'wrong') { //if user got it wrong, increment # of times card will show up (up to 2)
             if (flashcardCount[id] !== 2) flashcardCount[id]++;
         }
      
         if (i < flashcardIds.length-1) {
-            setI(i+1);  
+            setI(prevI => prevI+1);
             return flashcards[flashcardIds[i+1]];
         } else {
-            setI(0);
+            setI(0); //start a new round of cards
             const newFlashcardIds = Object.keys(flashcardCount);
-            shuffle(newFlashcardIds);
-            newFlashcardIds.sort((a,b) =>flashcardCount[b]-flashcardCount[a]);
+            shuffle(newFlashcardIds); // randomize order
+            newFlashcardIds.sort((a,b) =>flashcardCount[b]-flashcardCount[a]); //sort desc order by flashcards to be displayed more
             setFlashcardIds(newFlashcardIds);
             return flashcards[newFlashcardIds[0]];
         }
     }
    
+    const [cardClassName, flipCard] = useState('front');
+    const [btnsClassName, toggleBtns] = useState('hide');
 
+    if (!Object.keys(flashcardCount).length && numCards) {
+        return (
+            <div className='quiz-card-container'>
+                    <h1>{quiz.topic}</h1>
+                    <div className={cardClassName}> 
+                        <h2>Score: {(numRight/numCards * 100).toFixed(2)+'%'}</h2> 
+                    </div>
+            </div>
+        )
+    }
     
     if (curFlashcard && quiz) {
         return (
@@ -76,9 +92,8 @@ function Quiz() {
                       <h2>{curFlashcard.front}</h2>
                       <h4>{curFlashcard.back}</h4>
                     </div>
-                    {/* <h1>Flip Card</h1> */}
+                    
                     <div className={`${cardClassName}-icon`}>
-                        {console.log(`${cardClassName}-icon`)}
                         <BsArrowClockwise 
                             className={`flip`}
                             onClick={()=>{
@@ -118,9 +133,10 @@ function Quiz() {
             </div>
         )
     } else {
-        return (
-            
+        return (  
             <div className='quiz-card-container'>
+                    <div className={cardClassName}>   
+                    </div>
             </div>
         )
     }
