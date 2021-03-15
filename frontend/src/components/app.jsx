@@ -8,6 +8,7 @@ import LoginForm from './session/login_form';
 import SignupForm from './session/signup_form';
 import QuizEdit from './quiz/quiz_edit';
 import Quiz from './quiz/quiz';
+import Scores from './scores/scores';
 
 const App = () => (
   <div>
@@ -16,7 +17,7 @@ const App = () => (
         <Route exact path="/" component={MainPage} />
         <InstructorRoute exact path="/quiz/edit/:quizId" component={QuizEdit}/>
         <Route exact path="/quiz/:quizId" component={Quiz}/>
-        <InstructorRoute exact path="/scores/quiz/:quizId" component={QuizEdit}/>
+        <InstructorRoute exact path="/scores/quiz/:quizId" component={Scores}/>
         <AuthRoute exact path="/login" component={LoginForm} />
         <AuthRoute exact path="/signup" component={SignupForm} />
     </Switch>

@@ -5,7 +5,7 @@ import { deleteQuiz } from '../../actions/quiz_actions';
 import { IconContext } from 'react-icons';
 import { BiDotsHorizontal } from 'react-icons/bi';
 import { ImPencil } from 'react-icons/im';
-import { FaTrashAlt } from 'react-icons/fa';
+import { FaTrashAlt, FaListOl } from 'react-icons/fa';
 import './quiz.scss';
 
 function QuizItem({quiz, isInstructor}) {
@@ -18,6 +18,13 @@ function QuizItem({quiz, isInstructor}) {
     const dropdown = () => {
         return (
             <div className={dropdownClassName}>
+                <button onClick={() => history.push(`/scores/quiz/${quiz._id}`)}>
+                    <IconContext.Provider 
+                        value={{ style: { float:'left', margin:'0px 10px 0px 5px' } }}>
+                        <FaListOl></FaListOl>
+                    </IconContext.Provider>
+                    <span>View Scores</span>
+                </button>
                 <button onClick={() => history.push(`/quiz/edit/${quiz._id}`)}>
                     <IconContext.Provider 
                         value={{ style: { float:'left', margin:'0px 10px 0px 5px' } }}>

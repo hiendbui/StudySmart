@@ -1,6 +1,6 @@
 import * as APIUtil from '../util/score_api_util';
 
-export const RECEIVE_SCORES = "RECEIVE_FLASHCARD";
+export const RECEIVE_SCORES = "RECEIVE_SCORE";
 
 
 const receiveScores = scores => ({

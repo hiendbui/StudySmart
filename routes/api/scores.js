@@ -31,7 +31,8 @@ router.post('/',
 router.get('/quiz/:quizId', 
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
-        Quiz.findById(req.params.id)
+        
+        Quiz.findById(req.params.quizId)
             .populate('scores')
             .then(quiz => res.json(quiz.scores))
             .catch(err =>
