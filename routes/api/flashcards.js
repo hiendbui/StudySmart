@@ -10,13 +10,13 @@ router.post('/',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
       const newFlashcard = new Flashcard({
-        quiz: req.body.quiz,
         front: req.body.front,
         back: req.body.back
       });
       
       newFlashcard.save().then(flashcard => {
           //find quiz with Id and append flashcard id to its 'flashcards' property
+          console.log(flashcard);
           Quiz.findById(req.body.quiz)
             .then(quiz => {
                 quiz.flashcards.push(flashcard.id);

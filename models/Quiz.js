@@ -13,6 +13,10 @@ const QuizSchema = new Schema({
     flashcards: [{
         type: Schema.Types.ObjectId,
         ref: 'Flashcard'
+    }],
+    scores: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Score'
     }]
 }, {
   timestamps: true

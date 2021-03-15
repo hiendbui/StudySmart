@@ -30,6 +30,7 @@ app.use(bodyParser.json());
 app.use("/api/users", users);
 app.use("/api/quizzes", quizzes);
 app.use("/api/flashcards", flashcards);
+app.use("/api/scores", scores);
 app.use(passport.initialize());
 require('./config/passport')(passport);
 
