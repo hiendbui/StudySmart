@@ -44,7 +44,7 @@ function Quiz() {
    
     const [numRight, setNumRight] = useState(0);
     const [numCards, setNumCards] = useState(0);
-    // console.log(numRight,numCards);
+    
     const [i, setI] = useState(0);
     function nextFlashcard(res) {
         setNumCards(prevNum => prevNum + 1);

@@ -35,6 +35,7 @@ function Scores() {
               )
             })}
           </div>
+          <br/>
         </div>
       </div>
         )

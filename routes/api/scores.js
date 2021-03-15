@@ -16,7 +16,6 @@ router.post('/',
       
       newScore.save().then(score => {
           //find quiz with Id and append score id to its 'scores' property
-          console.log(score);
           Quiz.findById(req.body.quiz)
             .then(quiz => {
                 quiz.scores.push(score.id);
