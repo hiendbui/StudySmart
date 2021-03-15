@@ -1,6 +1,6 @@
 <h1>StudySmart</h1> 
 
-<a href="https://studysmartnow.herokuapp.com/">Live Link</a>
+<a href="https://studysmartnow.herokuapp.com/" target="_blank">Live Link</a>
 
 ## Technologies
 * MongoDB
