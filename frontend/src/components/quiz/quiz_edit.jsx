@@ -27,7 +27,7 @@ function QuizEdit() {
         return (
             <div className='main'>
                 <div className='quiz-container'>
-                <h1>Flashcards for {quiz.topic} Quiz  {editQuizIcon}</h1>
+                <h1>Flashcards for {quiz.topic}  {editQuizIcon}</h1>
                 <MdAddBox className='icon' onClick={()=>toggleCreateModal('modal-screen')}/>
                 <h3>{quiz.description} </h3>
                 <div className='flashcards'>

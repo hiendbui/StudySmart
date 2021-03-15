@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { createQuiz, updateQuiz } from '../../actions/quiz_actions';
 import { useDispatch } from 'react-redux';
 import { AiOutlineClose } from 'react-icons/ai'
@@ -16,17 +16,24 @@ function QuizForm({toggleModal, formType, quiz}) {
 
     //set action type depending on formType
     const action = formType === 'Create' ? createQuiz : updateQuiz;
+    
     function handleSubmit(e){
         e.preventDefault();
+        // document.getElementById('form').reset();
         toggleModal('hidden');
         dispatch(action(formData, quiz?._id)); //passing id for updateQuiz
+        if (formType === 'Create') setFormData(initialFormData); //reset formData if form is for creating quiz
     }
 
     return (
       <div className="create-form">
         <h1>{formType} Quiz</h1>
-        <AiOutlineClose className='icon close' onClick={() => toggleModal('hidden')}/>
-        <form onSubmit={handleSubmit}>
+        <AiOutlineClose 
+          className='icon close' 
+          onClick={
+            () => {toggleModal('hidden');setFormData(initialFormData)} //close modal and reset formdata
+          }/>
+        <form onSubmit={handleSubmit} id='form'>
           <br/>
           <br/>
           <div>

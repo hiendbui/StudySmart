@@ -117,7 +117,13 @@ function Quiz() {
                 </div>
             </div>
         )
-    } else return null;
+    } else {
+        return (
+            
+            <div className='quiz-card-container'>
+            </div>
+        )
+    }
   
 }
 

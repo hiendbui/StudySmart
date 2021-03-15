@@ -23,12 +23,17 @@ function FlashcardForm({toggleModal, formType, flashcard}) {
         e.preventDefault();
         toggleModal('hidden');
         dispatch(action(formData, flashcard?._id)); //passing id for updateFlashcard
+        setFormData(initialFormData); // reset formData
     }
 
     return (
       <div className="create-form">
         <h1>{formType} Flashcard</h1>
-        <AiOutlineClose className='icon close' onClick={() => toggleModal('hidden')}/>
+        <AiOutlineClose 
+          className='icon close' 
+          onClick={
+            () => {toggleModal('hidden');setFormData(initialFormData);} // toggle modal and reset formData
+          }/>
         <form onSubmit={handleSubmit}>
           <br/>
           <br/>
