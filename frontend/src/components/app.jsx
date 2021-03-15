@@ -16,6 +16,7 @@ const App = () => (
         <Route exact path="/" component={MainPage} />
         <InstructorRoute exact path="/quiz/edit/:quizId" component={QuizEdit}/>
         <Route exact path="/quiz/:quizId" component={Quiz}/>
+        <InstructorRoute exact path="/scores/quiz/:quizId" component={QuizEdit}/>
         <AuthRoute exact path="/login" component={LoginForm} />
         <AuthRoute exact path="/signup" component={SignupForm} />
     </Switch>

@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 import { clearErrors } from '../../actions/session_actions';
+import { removeQuiz } from '../../actions/quiz_actions';
 import { Link } from 'react-router-dom';
 import './navbar.scss';
 
@@ -14,7 +15,7 @@ const NavBar = () => {
       if (loggedIn) {
         return (
             <div className='links'>
-                <button><Link to={'/'}>Home</Link></button>
+                <button onClick={() => dispatch(removeQuiz())}><Link to={'/'}>Home</Link></button>
                 <button onClick={() => dispatch(logout())}>Logout</button>
             </div>
         );
@@ -30,7 +31,7 @@ const NavBar = () => {
 
   return (
     <div className="nav">
-        <h1><Link to={'/'}>StudySmart</Link></h1>
+        <h1 onClick={() => dispatch(removeQuiz())}><Link to={'/'}>StudySmart</Link></h1>
         { getLinks() }
     </div>
   );

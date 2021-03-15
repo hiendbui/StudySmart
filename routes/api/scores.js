@@ -28,11 +28,16 @@ router.post('/',
 );
 
 //get all scores for particular quiz
-router.get('/quiz/:quizId', (req, res) => {
-    Quiz.findById(req.params.id)
-        .populate('scores')
-        .then(quiz => res.json(quiz.scores))
-        .catch(err =>
-            res.status(404).json({ noquizzesfound: 'No quiz found with that ID' })
-        )
-});
+router.get('/quiz/:quizId', 
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        Quiz.findById(req.params.id)
+            .populate('scores')
+            .then(quiz => res.json(quiz.scores))
+            .catch(err =>
+                res.status(404).json({ noquizzesfound: 'No quiz found with that ID' })
+            )
+    }
+);
+
+module.exports = router;

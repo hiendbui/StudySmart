@@ -9,7 +9,8 @@ router.get('/', (req, res) => {
         .then(quizzes => {
             const quizMap = new Map();
             quizzes.forEach(quiz => {
-                quiz.flashcards = undefined // to keep redux state flat
+                quiz.flashcards = undefined; // to keep redux state flat
+                quiz.scores = undefined;
                 quizMap[quiz._id] = quiz;
             });
             return res.json(quizMap);

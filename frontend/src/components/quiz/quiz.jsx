@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchQuiz } from '../../actions/quiz_actions';
+import { createScore } from '../../util/score_api_util';
 import { BsArrowClockwise, BsArrowCounterclockwise } from 'react-icons/bs';
 import { FcCheckmark } from 'react-icons/fc';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -15,7 +16,7 @@ function Quiz() {
     //fetch Quiz with flashcards
     useEffect(() => dispatch(fetchQuiz(quizId)), []);
     const quiz = useSelector(state => state.entities.quizzes[quizId]);
-
+    const username = useSelector(state => state.session.user.username);
     const flashcards = useSelector(state => state.entities.flashcards);
     const initialIds = Object.keys(flashcards);
     shuffle(initialIds); // randomize order of flashcards
@@ -73,11 +74,13 @@ function Quiz() {
     const [btnsClassName, toggleBtns] = useState('hide');
 
     if (!Object.keys(flashcardCount).length && numCards) {
+        const percentage = (numRight/numCards * 100).toFixed(2);
+        createScore({username: username, percentage: percentage, quiz:quizId});
         return (
             <div className='quiz-card-container'>
                     <h1>{quiz.topic}</h1>
                     <div className={cardClassName}> 
-                        <h2>Score: {(numRight/numCards * 100).toFixed(2)+'%'}</h2> 
+                        <h2>Score: {percentage+'%'}</h2> 
                     </div>
             </div>
         )
