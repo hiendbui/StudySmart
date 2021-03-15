@@ -17,22 +17,24 @@ function Quiz() {
     const quiz = useSelector(state => state.entities.quizzes[quizId]);
 
     const flashcards = useSelector(state => state.entities.flashcards);
-    const flashcardIds = Object.keys(flashcards);
-    shuffle(flashcardIds);
+    const initialIds = Object.keys(flashcards);
+    shuffle(initialIds);
+    const initialFlashcardCount = {};
+    initialIds.forEach(id => initialFlashcardCount[id] = 2);
 
-    const initialBuckets = [[...flashcardIds],[]];
-    const [buckets, updateBuckets] = useState(new Array(2).fill([]));
+    // console.log(initialFlashcardCount);
+    // const initialBuckets = [[...flashcardIds],[]];
+    const [flashcardCount, setFlashcardCount] = useState({});
+    const [flashcardIds, setFlashcardIds] = useState([]);
     const [curFlashcard, setCurFlashcard] = useState({});
+    
     const [cardClassName, flipCard] = useState('front');
     const [btnsClassName, toggleBtns] = useState('hide');
 
-    let i = 0;
-    let j = 0;
-    if (initialBuckets[0].length && !buckets[0].length) {
-        updateBuckets(initialBuckets);
-        setCurFlashcard(flashcards[initialBuckets[i][j]]);
-    }
-
+    useEffect(() => setFlashcardCount(initialFlashcardCount), [quiz]);
+    useEffect(() => setFlashcardIds(initialIds), [quiz]);
+    useEffect(() => setCurFlashcard(flashcards[initialIds[0]]), [quiz]);
+  
     function shuffle(arr) {
         for (let i = arr.length - 1; i > 0; i--) {
             let j = Math.floor(Math.random() * (i + 1));
@@ -40,15 +42,29 @@ function Quiz() {
         }
     }
 
-    function nextFlashcard() {
-        if (j < buckets[i].length-1) {
-            j++;    
-        } else {
-            j = 0;
-            i++;
+   
+    const [i, setI] = useState(0);
+    function nextFlashcard(res) {
+        const id = flashcardIds[i];
+        if (res === 'right') {
+            flashcardCount[id] === 1 ? delete flashcardCount[id] : flashcardCount[id]--;
+        } else if (res === 'wrong') {
+            if (flashcardCount[id] !== 2) flashcardCount[id]++;
         }
-        return flashcards[buckets[i][j]];
+     
+        if (i < flashcardIds.length-1) {
+            setI(i+1);  
+            return flashcards[flashcardIds[i+1]];
+        } else {
+            setI(0);
+            const newFlashcardIds = Object.keys(flashcardCount);
+            shuffle(newFlashcardIds);
+            newFlashcardIds.sort((a,b) =>flashcardCount[b]-flashcardCount[a]);
+            setFlashcardIds(newFlashcardIds);
+            return flashcards[newFlashcardIds[0]];
+        }
     }
+   
 
     
     if (curFlashcard && quiz) {
@@ -81,7 +97,7 @@ function Quiz() {
                                 className='x'
                                 onClick={()=>{
                                     toggleBtns('hide');
-                                    setCurFlashcard(nextFlashcard());
+                                    setCurFlashcard(nextFlashcard('wrong'));
                                     flipCard('front');
                                 }}
                             >
@@ -91,7 +107,7 @@ function Quiz() {
                                 className='check'
                                 onClick={()=>{
                                     toggleBtns('hide');
-                                    setCurFlashcard(nextFlashcard());
+                                    setCurFlashcard(nextFlashcard('right'));
                                     flipCard('front');
                                 }}
                             >
