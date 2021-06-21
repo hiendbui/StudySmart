@@ -2,6 +2,8 @@
 
 <a href="https://studysmartnow.herokuapp.com/">Live Link</a>
 
+Spaced-Repitition Flashcard App that allows users to create their own flashcard quizzes, take those quizzes, and receive scores based on their performance.
+
 ## Technologies
 * MongoDB
 * Express.js
